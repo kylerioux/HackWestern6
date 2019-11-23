@@ -19,7 +19,9 @@ const userSchema = new Schema({
     interests: [{
         type: String
     }],
-    preferredGroupSize: Number
+    preferredGroupSize: Number,
+    postingsSkipped: [{ type: Schema.Types.ObjectId, ref: 'Posting' }],
+    postingsInterested: [{ type: Schema.Types.ObjectId, ref: 'Posting' }]
 });
 
 mongoose.model("users", userSchema);

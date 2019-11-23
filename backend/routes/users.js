@@ -4,47 +4,64 @@ const mongoose = require("mongoose");
 
 const User = mongoose.model("users");
 
-users.get('/:id', async (req, res) => {
-  var id = req.params.id;
-  let user = await User.find({_id: id}).exec();
-  
-  res.send(user);
+function isAuthenticated(req, res) {
+  if(req.user == undefined) {
+    res.send("Unauthenticated access");
+    return false;
+  } else {
+    return true;
+  }
+}
+
+users.get('/', async (req, res) => {
+  if(isAuthenticated(req, res)) {
+    var id = req.user._id;
+    let user = await User.find({_id: id}).exec();
+    
+    res.send(user);
+  }
 });
 
-users.post('/exp/:id/:experience', (req, res) => {
-  User.findOne({ _id: req.params.id }).then(user => {
-    user.experience = req.params.experience;
-    user.save();
-    res.send("success");
-  });
-})
-
-users.post('/interest/:id/:interest', (req, res) => {
-  User.findOne({ _id: req.params.id }).then(user => {
-    var exists = user.interests.find((interest) => { 
-      return interest == req.params.interest; 
-    }); 
-    if(!exists) {
-      user.interests.push(req.params.interest);
+users.post('/exp', (req, res) => {
+  if(isAuthenticated(req, res)) {
+    User.findOne({ _id: req.user._id }).then(user => {
+      user.experience = req.body.experience;
       user.save();
       res.send("success");
-    } else {
-      res.send("interest already exists");
-    }
-  });
+    });
+  }
 })
 
-users.post('/groupsize/:id/:size', (req, res) => {
-  User.findOne({ _id: req.params.id }).then(user => {
-    var size = req.params.size;
-    if(size != null && size > 0) {
-      user.size = req.params.size;
-      user.save();
-      res.send("success");
-    } else {
-      res.send("size must be greater than 0");
-    }
-  });
+users.post('/interest', (req, res) => {
+  if(isAuthenticated(req, res)) {
+    User.findOne({ _id: req.user._id }).then(user => {
+      var exists = user.interests.find(interest => {
+        return interest == req.body.interest; 
+      }); 
+      if(!exists) {
+        user.interests.push(req.body.interest);
+        user.save();
+        res.send("success");
+      } else {
+        res.send("interest already exists");
+      }
+    });
+  }
+})
+
+users.post('/group-size', (req, res) => {
+  if(isAuthenticated(req, res)) {
+    User.findOne({ _id: req.user._id }).then(user => {
+      var size = req.body.size;
+      if(size != null && size > 0) {
+        user.size = size;
+        user.save();
+        res.send("success");
+      } else {
+        res.send("size must be greater than 0");
+      }
+    });
+  }
 })
 
 module.exports = users;
