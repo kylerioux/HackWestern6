@@ -22,7 +22,7 @@ router.use("/auth", AuthRouter);
 router.get("/", (req, res) => {
     if (req.user) {
         res.json({
-            status: "session cookie set"
+            status: "session cookie set",
         });
     } else {
         res.json({

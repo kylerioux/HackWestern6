@@ -27,7 +27,16 @@ passport.use(
                 if (user) {
                     return done(null, user);
                 } else {
-                    new User({ loginId: profile.id }).save().then(user => {
+                    new User({ 
+                        loginId: profile.id,
+                        profilePictureUrl: profile.photos[0] != null ? profile.photos[0].value : null,
+                        gitHubUserName: profile.displayName,
+                        gitHubUrl: profile.profileUrl,
+                        personalWebsiteUrl: profile._json.blog != null ? profile._json.blog : null,
+                        location: profile._json.location != null ? profile._json.location : null,
+                        skills: [null],
+                        interests: [null],
+                    }).save().then(user => {
                         return done(null, user);
                     });
                 }
