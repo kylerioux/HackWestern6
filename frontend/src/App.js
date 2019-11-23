@@ -11,6 +11,7 @@ import {
   Link
 } from "react-router-dom";
 import Typography from '@material-ui/core/Typography';
+import AccountCreation from './components/AccountCreation/AccountCreation.js';
 
 function handleLogin(e) {
   e.preventDefault();
@@ -19,75 +20,98 @@ function handleLogin(e) {
 
 function App() {
   return (
+    <div className="App">
+      <header className="App-header">
+ 
 
-    <Router>
-    <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/users">Users</Link>
-          </li>
-        </ul>
-      </nav> 
+      <img src={logo} className="App-logo" alt="logo" />
 
+      <Typography variant="h5" component="h5">
+        Welcome to Portfol.io
+      </Typography>
+
+      <br></br>
+
+      <Button variant="contained" color="primary" onClick={handleLogin}>
+        sign in with github
+      </Button>
+
+      <br></br>
+
+      <Router>
+      <Link to="/accountcreation">
+      <Button variant="contained" color="primary" >
+          REDIRECT TO ACCOUNT CREATION FORM
+      </Button>
+      </Link>
+     
       <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+            <Route path="/accountcreation">
+              <AccountCreation />
+            </Route>
+            {/* <Route path="/users">
+              <Users />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route> */}
+          </Switch>
+        </Router>
+
+    </header>
+
+
+    </div>
 
   );
 }
 
-function Home() {
-  return(  <div className="App">
-  <header className="App-header">
+// function Home() {
+//    return(
+//      <p>hey</p>
+//    );  
+//   <div className="App">
+//     <header className="App-header">
 
-    <img src={logo} className="App-logo" alt="logo" />
+//     <img src={logo} className="App-logo" alt="logo" />
 
-    <Typography variant="h5" component="h5">
-      Welcome to Portfol.io
-    </Typography>
+//     <Typography variant="h5" component="h5">
+//       Welcome to Portfol.io
+//     </Typography>
 
-    <br></br>
+//     <br></br>
 
-    <Button variant="contained" color="primary" onClick={handleLogin}>
-      sign in with github
-    </Button>
+//     <Button variant="contained" color="primary" onClick={handleLogin}>
+//       sign in with github
+//     </Button>
 
-    <br></br>
+//     <br></br>
 
-    <Link to="/about">
-     <Button variant="contained" color="primary" >
-        REDIRECT BUTTON
-     </Button>
-    </Link>
+//     <Link to="/accountcreation">
+//      <Button variant="contained" color="primary" >
+//         REDIRECT TO ACCOUNT CREATION FORM
+//      </Button>
+//     </Link>
 
-  </header>
-</div>) 
+//   </header>
+// </div>
 
-}
+//}
 
-function About() {
-  return <h2>About</h2>;
-}
+// function About() {
+//   return(
+//     <div className="about">
+//     <header className="App-header">
+//     <p>Account Creation</p>
 
-function Users() {
-  return <h2>Users</h2>;
-}
+//     </header>
+    
+//     </div>
+//   ) 
+// }
+
+// function Users() {
+//   return <h2>Users</h2>;
+// }
 
 export default App;
