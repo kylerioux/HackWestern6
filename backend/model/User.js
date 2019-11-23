@@ -8,6 +8,7 @@ const userSchema = new Schema({
     gitHubUrl: String,
     personalWebsiteUrl: String,
     location: String,
+    accessToken:String,
     experience: {
         type: String,
         enum : ["BEGINNER", "INTERMEDIATE", "EXPERT"],
