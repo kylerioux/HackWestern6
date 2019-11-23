@@ -15,10 +15,10 @@ import logo from '../../portfolio.png';
 
 function handleLogin(e) {
     e.preventDefault();
-    axios.get("/api/auth/github/login",{
+    axios.get("https://cors-anywhere.herokuapp.com/http://206.189.64.155:3000/api/",{
       headers: {
-          'Content-Type': 'application/json'
-      }
+        Accept: "application/json"
+     }
   }).then((x)=>{
       if ( x.status == "OK"){
         console.log(x.status)
