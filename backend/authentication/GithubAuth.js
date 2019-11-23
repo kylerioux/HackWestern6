@@ -34,8 +34,9 @@ passport.use(
                         gitHubUrl: profile.profileUrl,
                         personalWebsiteUrl: profile._json.blog != null ? profile._json.blog : null,
                         location: profile._json.location != null ? profile._json.location : null,
-                        skills: [null],
-                        interests: [null],
+                        skills: [],
+                        interests: [],
+                        preferredGroupSize: null,
                     }).save().then(user => {
                         return done(null, user);
                     });

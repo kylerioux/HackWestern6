@@ -19,6 +19,7 @@ const userSchema = new Schema({
     interests: [{
         type: String
     }],
+    preferredGroupSize: Number
 });
 
 mongoose.model("users", userSchema);
