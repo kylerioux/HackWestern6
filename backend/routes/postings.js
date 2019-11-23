@@ -1,8 +1,6 @@
 var express = require('express');
 var postings = express.Router();
 const mongoose = require("mongoose");
-const {ObjectId} = require('mongodb');
-
 const Posting = mongoose.model("postings");
 const User = mongoose.model("users");
 
@@ -15,9 +13,9 @@ function isAuthenticated(req, res) {
     }
   }
 
-postings.get('/:id', async (req, res) => {
+postings.get('/', async (req, res) => {
     if(isAuthenticated(req, res)) {
-        Posting.findOne({ _id: req.params.id }).then(post => {
+        Posting.findOne({ _id: req.body.id }).then(post => {
             if(post != null) {
                 res.send(post);
             } else {
@@ -27,19 +25,13 @@ postings.get('/:id', async (req, res) => {
     }
 });
 
-postings.get('/match', async (req, res) => {
-    if(isAuthenticated(req, res)) {
-        res.send("not implemented");
-    }
-});
-
 postings.post('/create/', async (req, res) => {
     if(isAuthenticated(req, res)) {
         var title = req.body.title;
         var description = req.body.description;
-        var author = new ObjectId(req.body.author);
+        var author = mongoose.Types.ObjectId(req.body.author);
 
-        User.findOne({ _id: req.params.id }).then(user => {
+        User.findOne({ _id: req.body.author }).then(user => {
             if(user != null) {
                 new Posting({ 
                     title: title,
@@ -54,8 +46,50 @@ postings.post('/create/', async (req, res) => {
                 res.send("author user not found")
             }
         });
-        res.send("success");
     }
   });
+
+postings.post('/comment/', async (req, res) => {
+    if(isAuthenticated(req, res)) {
+        Posting.findOne({ _id: req.body.id }).then(post => {
+            if(post != null) {
+                post.messages.push({
+                    author: mongoose.Types.ObjectId(req.body.author),
+                    content: req.body.content,
+                    timestamp : new Date()
+                });
+                post.save().then(post => {
+                    User.findOne({ _id: req.user._id }).then(user => {
+                        user.postingsInterested.push(mongoose.Types.ObjectId(req.body.id));
+                        user.save();
+                    });
+                });
+                res.send("success");
+            } else {
+                res.send("posting not found");
+            }
+        });
+    }
+});
+
+postings.post('/decline/', async (req, res) => {
+    if(isAuthenticated(req, res)) {
+        User.findOne({ _id: req.user._id }).then(user => {
+            if(user != null) {
+              user.postingsSkipped.push(mongoose.Types.ObjectId(req.body.id));
+              user.save();
+              res.send("success");
+            } else {
+              res.send("user not found");
+            }
+        });
+    }
+  });
+
+postings.get('/match', async (req, res) => {
+    if(isAuthenticated(req, res)) {
+        res.send("not implemented");
+    }
+});
 
 module.exports = postings;
