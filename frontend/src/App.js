@@ -12,49 +12,25 @@ import {
 } from "react-router-dom";
 import Typography from '@material-ui/core/Typography';
 import AccountCreation from './components/AccountCreation/AccountCreation.js';
+import Signup from './components/Signup/Signup.js';
 
-function handleLogin(e) {
-  e.preventDefault();
-  console.log('SIGN IN TO GITHUB PRESSED');
-}
-
-function App() {
+export default function App() {
   return (
     <div className="App">
       <header className="App-header">
+
  
-
-      <img src={logo} className="App-logo" alt="logo" />
-
-      <Typography variant="h5" component="h5">
-        Welcome to Portfol.io
-      </Typography>
-
-      <br></br>
-
-      <Button variant="contained" color="primary" onClick={handleLogin}>
-        sign in with github
-      </Button>
-
-      <br></br>
-
+ 
       <Router>
-      <Link to="/accountcreation">
-      <Button variant="contained" color="primary" >
-          REDIRECT TO ACCOUNT CREATION FORM
-      </Button>
-      </Link>
-     
       <Switch>
-            <Route path="/accountcreation">
+
+            <Route path='/' exact>
+              <Signup />
+            </Route>
+            <Route path="/accountcreation" exact >
               <AccountCreation />
             </Route>
-            {/* <Route path="/users">
-              <Users />
-            </Route>
-            <Route path="/">
-              <Home />
-            </Route> */}
+
           </Switch>
         </Router>
 
@@ -114,4 +90,3 @@ function App() {
 //   return <h2>Users</h2>;
 // }
 
-export default App;
