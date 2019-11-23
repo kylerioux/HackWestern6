@@ -34,21 +34,21 @@ const useStyles = makeStyles({
     value:null,
     valuetext:null,
   }
-  handleGroupSize = () => {
+  handleChange = (event, newValue) => {
+    this.state.value=newValue;
+  }
+handleGroupSize = () => {
     console.log(this.state.value)
     this.setState(() => ({
-      showQuestion2: true
-      }))
+    showQuestion2: true
+    }))
 }
-
 
   render() {
     if (this.state.showQuestions === true) {
       return <Redirect to='/accountcreationq2' />
   }
   
-
-
     return(
         <div >
           <header className="App-header">
@@ -56,6 +56,7 @@ const useStyles = makeStyles({
               <br></br>
       <Slider
         defaultValue={6}
+        value={this.state.value}
         getAriaValueText={this.state.valuetext}
         aria-labelledby="discrete-slider"
         valueLabelDisplay="auto"
@@ -63,6 +64,7 @@ const useStyles = makeStyles({
         marks
         min={2}
         max={20}
+        onChange={this.handleChange}
       />
         <br></br>
         <Button margin='3' variant="outlined" color="secondary"  onClick={this.handleGroupSize}>
