@@ -25,9 +25,23 @@ passport.use(
             console.log(profile);
             User.findOne({ loginId: profile.id }).then(user => {
                 if (user) {
-                    return done(null, user);
+                    user.accessToken = accessToken;
+                    user.save().then(()=>{
+                      return done(null,);
+                    })
+                 
                 } else {
-                    new User({ loginId: profile.id }).save().then(user => {
+                    new User({ 
+                        loginId: profile.id,
+                        profilePictureUrl: profile.photos[0] != null ? profile.photos[0].value : null,
+                        gitHubUserName: profile.displayName,
+                        gitHubUrl: profile.profileUrl,
+                        personalWebsiteUrl: profile._json.blog != null ? profile._json.blog : null,
+                        location: profile._json.location != null ? profile._json.location : null,
+                        skills: [],
+                        interests: [],
+                        preferredGroupSize: null,
+                    }).save().then(user => {
                         return done(null, user);
                     });
                 }
