@@ -7,6 +7,9 @@ const AuthRouter = require("./auth");
 
 const router = express.Router();
 
+var usersRouter = require("./users");
+var postingsRouter = require("./postings");
+
 router.use(
     cookieSession({
         maxAge: 30 * 24 * 60 * 60 * 1000,
@@ -18,7 +21,10 @@ router.use(
 router.use(passport.initialize());
 router.use(passport.session());
 
+
 router.use("/auth", AuthRouter);
+router.use("/users", usersRouter);
+router.use("/postings", postingsRouter);
 
 router.get("/", (req, res) => {
     if (req.user) {
