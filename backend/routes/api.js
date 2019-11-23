@@ -24,7 +24,6 @@ router.get("/", (req, res) => {
     if (req.user) {
         res.json({
             status: "session cookie set",
-            token:req.user.accessToken
         });
     } else {
         res.json({

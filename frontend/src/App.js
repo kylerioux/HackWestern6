@@ -1,30 +1,93 @@
 import React from 'react';
-import logo from './logo.svg';
+import logo from './portfolio.png';
 import './App.css';
 import Button from '@material-ui/core/Button';
+import 'typeface-roboto';
+import { Redirect } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Typography from '@material-ui/core/Typography';
+
+function handleLogin(e) {
+  e.preventDefault();
+  console.log('SIGN IN TO GITHUB PRESSED');
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Button variant="contained" color="primary">
-          BUTTON FOR ALI TO CLICK
-        </Button>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <Router>
+    <div>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/users">Users</Link>
+          </li>
+        </ul>
+      </nav> 
+
+      <Switch>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/users">
+            <Users />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+
   );
+}
+
+function Home() {
+  return(  <div className="App">
+  <header className="App-header">
+
+    <img src={logo} className="App-logo" alt="logo" />
+
+    <Typography variant="h5" component="h5">
+      Welcome to Portfol.io
+    </Typography>
+
+    <br></br>
+
+    <Button variant="contained" color="primary" onClick={handleLogin}>
+      sign in with github
+    </Button>
+
+    <br></br>
+
+    <Link to="/about">
+     <Button variant="contained" color="primary" >
+        REDIRECT BUTTON
+     </Button>
+    </Link>
+
+  </header>
+</div>) 
+
+}
+
+function About() {
+  return <h2>About</h2>;
+}
+
+function Users() {
+  return <h2>Users</h2>;
 }
 
 export default App;
