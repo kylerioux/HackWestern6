@@ -23,11 +23,14 @@ router.use("/auth", AuthRouter);
 router.get("/", (req, res) => {
     if (req.user) {
         res.json({
-            status: "session cookie set",
+            status: "OK",
+            userAccount: user.gitHubUsername,
+            userId: user.loginId
+
         });
     } else {
         res.json({
-            status: "session cookie not set"
+            status: "FAIL"
         });
     }
 });
