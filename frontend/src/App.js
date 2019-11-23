@@ -12,14 +12,9 @@ import {
 } from "react-router-dom";
 import Typography from '@material-ui/core/Typography';
 
-function handleClick(e) {
+function handleLogin(e) {
   e.preventDefault();
-  console.log('The link was clicked.');
-}
-
-function redirect(e) {
-  e.preventDefault();
-  console.log('The REDIRECT link was clicked.');
+  console.log('SIGN IN TO GITHUB PRESSED');
 }
 
 function App() {
@@ -70,15 +65,18 @@ function Home() {
 
     <br></br>
 
-    <Button variant="contained" color="primary" onClick={handleClick}>
+    <Button variant="contained" color="primary" onClick={handleLogin}>
       sign in with github
     </Button>
 
     <br></br>
-      
-    <Button variant="contained" color="primary" onClick={redirect}>
-      <Link to="/about">REDIRECT BUTTON</Link>
-    </Button>
+
+    <Link to="/about">
+     <Button variant="contained" color="primary" >
+        REDIRECT BUTTON
+     </Button>
+    </Link>
+
   </header>
 </div>) 
 
