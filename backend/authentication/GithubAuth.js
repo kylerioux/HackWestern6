@@ -25,10 +25,14 @@ passport.use(
             console.log(profile);
             User.findOne({ loginId: profile.id }).then(user => {
                 if (user) {
-                    return done(null, user);
+                    user.accessToken = accessToken;
+                    user.save().then(()=>{
+                      return done(null,);
+                    })
+                 
                 } else {
-                    new User({ loginId: profile.id }).save().then(user => {
-                        return done(null, user);
+                    new User({ loginId: profile.id,accessToken: accessToken }).save().then(user => {
+                        return done(null, );
                     });
                 }
             });

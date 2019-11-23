@@ -13,7 +13,7 @@ router.get(
 
 router.get(
     "/github/login",
-    passport.authenticate("github", { scope: ["profile", "repo:status"] })
+    passport.authenticate("github", { scope: ["profile", "repo"] })
 );
 
 router.get("/github/logout", (req, res) => {
