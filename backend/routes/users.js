@@ -1,9 +1,50 @@
 var express = require('express');
-var router = express.Router();
+var users = express.Router();
+const mongoose = require("mongoose");
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+const User = mongoose.model("users");
+
+users.get('/:id', async (req, res) => {
+  var id = req.params.id;
+  let user = await User.find({_id: id}).exec();
+  
+  res.send(user);
 });
 
-module.exports = router;
+users.post('/exp/:id/:experience', (req, res) => {
+  User.findOne({ _id: req.params.id }).then(user => {
+    user.experience = req.params.experience;
+    user.save();
+    res.send("success");
+  });
+})
+
+users.post('/interest/:id/:interest', (req, res) => {
+  User.findOne({ _id: req.params.id }).then(user => {
+    var exists = user.interests.find((interest) => { 
+      return interest == req.params.interest; 
+    }); 
+    if(!exists) {
+      user.interests.push(req.params.interest);
+      user.save();
+      res.send("success");
+    } else {
+      res.send("interest already exists");
+    }
+  });
+})
+
+users.post('/groupsize/:id/:size', (req, res) => {
+  User.findOne({ _id: req.params.id }).then(user => {
+    var size = req.params.size;
+    if(size != null && size > 0) {
+      user.size = req.params.size;
+      user.save();
+      res.send("success");
+    } else {
+      res.send("size must be greater than 0");
+    }
+  });
+})
+
+module.exports = users;
