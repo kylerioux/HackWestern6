@@ -1,12 +1,12 @@
-.AccountCreation {
+.AccountCreationQ1 {
     text-align: center;
   }
   
-  .AccountCreation-logo {
+  .AccountCreationQ1-logo {
     height: 40vmin;
   }
   
-  .AccountCreation-header {
+  .AccountCreationQ1-header {
     background-color: #282c34;
     min-height: 100vh;
     display: flex;
@@ -17,7 +17,11 @@
     color: white;
   }
   
-  .AccountCreation-link {
+  .AccountCreationQ1-link {
     color: #09d3ac;
   }
   
+  .divider{
+    height:10px;
+    display:inline-block;
+}

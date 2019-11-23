@@ -11,8 +11,12 @@ import {
   Link
 } from "react-router-dom";
 import Typography from '@material-ui/core/Typography';
-import AccountCreation from './components/AccountCreation/AccountCreation.js';
+import AccountCreationQ1 from './components/AccountCreationQ1/AccountCreationQ1.js';
 import Signup from './components/Signup/Signup.js';
+import AccountCreationQ2 from './components/AccountCreationQ2/AccountCreationQ2.js';
+
+
+import { FormControl } from '@material-ui/core';
 
 export default function App() {
   return (
@@ -23,8 +27,11 @@ export default function App() {
             <Route path='/' exact>
               <Signup />
             </Route>
-            <Route path="/accountcreation" exact >
-                <AccountCreation />
+            <Route path="/accountcreationq1" exact >
+                <AccountCreationQ1 />
+            </Route>
+            <Route path="/accountcreationq2" exact >
+                <AccountCreationQ2 />
             </Route>
           </Switch>
         </Router>
