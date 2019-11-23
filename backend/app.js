@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+const { spawn } = require('child_process');
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -36,6 +38,22 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+
+const top = spawn('lizard', ['.']);
+
+
+top.stdout.on('data', (data) => {
+  console.log(`stdout: ${data}`);
+});
+
+top.stderr.on('data', (data) => {
+  console.log(`stderr: ${data}`);
+});
+
+top.on('close', (code) => {
+  console.log(`child process exited with code ${code}`);
 });
 
 module.exports = app;
