@@ -1,5 +1,6 @@
 var createError = require("http-errors");
 var express = require("express");
+var cors = require('cors');
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
@@ -8,11 +9,11 @@ var mongoose = require("mongoose");
 
 //registering models
 var user = require("./model/User");
+var postings = require("./model/Posting");
 
 var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
-var apiRouter = require("./routes/api");
 
+var apiRouter = require("./routes/api");
 var app = express();
 
 // view engine setup
@@ -26,9 +27,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
 app.use("/api", apiRouter);
-
+app.use(cors());
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     next(createError(404));

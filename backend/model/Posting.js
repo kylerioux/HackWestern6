@@ -12,4 +12,4 @@ const postingSchema = new Schema({
     }]
 });
 
-mongoose.model("users", postingSchema);
+mongoose.model("postings", postingSchema);
