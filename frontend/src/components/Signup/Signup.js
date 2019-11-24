@@ -15,16 +15,22 @@ import logo from '../../portfolio.png';
 
 function handleLogin(e) {
     e.preventDefault();
-    axios.get("https://cors-anywhere.herokuapp.com/http://206.189.64.155:3000/api/",{
+    axios.get("/api/auth/github/login",{
       headers: {
         Accept: "application/json"
      }
   }).then((x)=>{
-      if ( x.status == "OK"){
-        console.log(x.status)
-        return <Redirect to="/accountcreation"/>
-      }
+    axios.get("/api/users",{
+      headers: {
+        Accept: "application/json"
+     }
+  }).then((x)=>{
+      console.log(x);
     })
+
+    })
+
+
 
   }
 

@@ -8,6 +8,8 @@ router.get(
     (req, res) => {
         console.log("Login Successful!");
         res.redirect("http://127.0.0.1:4040");
+    },(err) =>{
+      console.log(err)
     }
 );
 
