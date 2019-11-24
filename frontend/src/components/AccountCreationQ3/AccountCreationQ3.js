@@ -1,56 +1,27 @@
 import React from 'react';
+import axios from 'axios';
 
 import './AccountCreationQ3.css';
 import Button from '@material-ui/core/Button';
 import 'typeface-roboto';
 import { Redirect } from 'react-router-dom'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-import Typography from '@material-ui/core/Typography';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import { makeStyles } from '@material-ui/core/styles';
-import FormControl from '@material-ui/core/FormControl';
-import Slider from '@material-ui/core/Slider';
 import TextField from '@material-ui/core/TextField';
 import Chip from '@material-ui/core/Chip';
-  
-//   function valuetext(value) {
-//     return `${value}°C`;
-//   }
-
-const useStyles = makeStyles(theme => ({
-    root: {
-      '& > *': {
-        margin: theme.spacing(1),
-        width: 200,
-      },
-    },
-  }));
   
  class AccountCreationQ3 extends React.Component {
 
   state = {
     showDashboard: false,
     chipTags:[],
-    myCtr:0,
-    value:null,
-    
+    value: '',
   }
 
   handleInterest = async () => {
-    console.log("value is: ", this.state.value)
-
-    var chip = document.createElement("BUTTON");
-    chip.innerHTML = String(this.myCtr);
-    document.body.appendChild(chip);
-
-    this.state.chipTags[this.state.myCtr]=this.state.value;
-    this.state.myCtr=this.state.myCtr+1;
-    console.log("entered")
+    await axios.post("/api/users/interest", { interest: this.state.value });
+    this.setState(() => ({
+      chipTags: [...this.state.chipTags, this.state.value],
+      value: ''
+    }))
   }
 
   handleDone = async () => {
@@ -58,10 +29,10 @@ const useStyles = makeStyles(theme => ({
     console.log("my ctr is: ",this.state.myCtr)
   }
 
-  handleChange = (event, newValue) => {
-    console.log("Change happened")
+  handleChange = (event) => {
+    const { target: { name, value } } = event;
     this.setState(() => ({
-      value: newValue
+      value: value
     }))
   }
 
@@ -83,7 +54,9 @@ const useStyles = makeStyles(theme => ({
                     <br></br>
                     <br></br>
 
-                    <Chip label="TEST CHIP" />
+                    {this.state.chipTags.map((tag, i) => {     
+                      return (<Chip key={i} label={tag} />) 
+                    })}
 
                     <br></br>
                     <br></br>
