@@ -1,58 +1,61 @@
 import React from 'react';
+import axios from 'axios';
 
 import './AccountCreationQ1.css';
 import Button from '@material-ui/core/Button';
 import 'typeface-roboto';
 import { Redirect } from 'react-router-dom'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-import Typography from '@material-ui/core/Typography';
-import RadioGroup from '@material-ui/core/RadioGroup';
 
-import FormControl from '@material-ui/core/FormControl';
-  
- class AccountCreationQ1 extends React.Component {
+class AccountCreationQ1 extends React.Component {
 
   state = {
     showQuestion2: false,
   }
-  handleLevel = () => {
+  handleLevel = async (type) => {
+
+    switch (type) {
+      case 1:
+        await axios.post("/api/users/exp", { experience: "BEGINNER" });
+        break;
+      case 2:
+        await axios.post("/api/users/exp", { experience: "INTERMEDIATE" });
+        break;
+      default:
+        await axios.post("/api/users/exp", { experience: "EXPERT" });
+    }
+
     this.setState(() => ({
       showQuestion2: true
-      }))
-}
+    }))
+  }
 
   render() {
     if (this.state.showQuestion2 === true) {
       return <Redirect to='/accountcreationq2' />
-  }
+    }
 
-    return(
+    return (
 
-        <div className="about">
-          <header className="App-header">
-            <p> My level of programming proficiency is </p>
-            <Button margin='3' variant="outlined" color="secondary"  onClick={this.handleLevel}>
-              Beginner
+      <div className="about">
+        <header className="App-header">
+          <p> My level of programming proficiency is </p>
+          <Button margin='3' variant="outlined" color="secondary" onClick={() => this.handleLevel(1)}>
+            Beginner
             </Button>
-            <div className="divider"/>
-            <Button margin='3' variant="outlined" color="secondary"  onClick={this.handleLevel}>
-              Intermediate
+          <div className="divider" />
+          <Button margin='3' variant="outlined" color="secondary" onClick={() => this.handleLevel(2)}>
+            Intermediate
             </Button>
-            <div className="divider"/>
-            <Button margin='3' variant="outlined" color="secondary"  onClick={this.handleLevel}>
-              Expert
+          <div className="divider" />
+          <Button margin='3' variant="outlined" color="secondary" onClick={() => this.handleLevel(3)}>
+            Expert
             </Button>
 
-              <br></br>
-          
-          </header>
-        </div>
-        ); 
+          <br></br>
+
+        </header>
+      </div>
+    );
   }
 }
 export default AccountCreationQ1
