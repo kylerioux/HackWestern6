@@ -30,8 +30,8 @@ router.get("/", (req, res) => {
     if (req.user) {
         res.json({
             status: "OK",
-            userAccount: user.gitHubUsername,
-            userId: user.loginId
+            userAccount: req.user.gitHubUsername,
+            userId: req.user.loginId
 
         });
     } else {
