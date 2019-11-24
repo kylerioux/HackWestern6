@@ -3,7 +3,6 @@ import axios from 'axios';
 import './Signup.css';
 import Button from '@material-ui/core/Button';
 import 'typeface-roboto';
-import { animateScroll as scroll } from "react-scroll";
 
 import {
   BrowserRouter as Router,
