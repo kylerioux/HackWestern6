@@ -36,6 +36,9 @@ const useStyles = makeStyles({
     valuetext:null,
     data:{},
     profilepicurl:"",
+    profilename:"",
+    username:"",
+    index:null,
   }
 
   handleCreatePost = () => {
@@ -46,12 +49,20 @@ const useStyles = makeStyles({
     console.log('search')
   }
 
+
   async componentDidMount() {
+  
+
     const response = await axios.get("/api/users" );
+    this.setState({ data: response, profilepicurl:response.data[0].profilePictureUrl,
+    profilename:response.data[0].gitHubUrl,
     
-    this.setState({ data: response, profilepicurl: response.data[0].profilePictureUrl });
-    console.log(this.state.profilepicurl)
-    console.log(response)
+});
+
+   
+     console.log(this.state.username)
+
+     
   }
 
 
@@ -59,6 +70,8 @@ const useStyles = makeStyles({
     if (this.state.showQuestions === true) {
       return <Redirect to='/accountcreationq2' />
   }
+  this.state.index = this.state.profilename.lastIndexOf("/");
+this.state.username = this.state.profilename.substring(this.state.index, this.state.profilename.length); 
   
     return(
         <div >
@@ -68,6 +81,8 @@ const useStyles = makeStyles({
 
             <br></br>
             
+            <p>{this.state.username}</p>
+
             <img style={{borderRadius:"50%"}} src={this.state.profilepicurl} alt="No Github Profile Picture" height="150" width="150"></img>
 
               <br></br>
