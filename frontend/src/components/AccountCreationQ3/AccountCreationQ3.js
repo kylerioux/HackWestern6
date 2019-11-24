@@ -24,10 +24,15 @@ import Chip from '@material-ui/core/Chip';
     }))
   }
 
-  handleDone = async () => {
-    console.log("done")
-    console.log("my ctr is: ",this.state.myCtr)
-  }
+  handleDone = async () => {    
+      
+this.setState(() => ({
+    showDashboard: true,
+   
+  }))
+}
+
+  
 
   handleChange = (event) => {
     const { target: { name, value } } = event;
@@ -39,7 +44,7 @@ import Chip from '@material-ui/core/Chip';
   render() {
     if (this.state.showDashboard === true) {
       return <Redirect to='/dashboard' />
-  }
+    }
   
     return(
         <div >
