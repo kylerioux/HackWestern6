@@ -46,7 +46,7 @@ app.use(function(err, req, res, next) {
 });
 
 app.get(
-  "/api/github/callback",
+  "/api/auth/github/callback",
   passport.authenticate("github", { failureRedirect: "/api" }),
   (req, res) => {
       console.log("Login Successful!");
