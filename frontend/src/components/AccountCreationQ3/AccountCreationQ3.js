@@ -52,7 +52,7 @@ import Chip from '@material-ui/core/Chip';
 
               <form className={this.root} noValidate autoComplete="off" onSubmit={e => { e.preventDefault(); }}>
                     
-                    <TextField onChange={this.handleChange} value={this.state.value} color="secondary" id="filled-basic" label="My Interests" variant="filled" />
+                    <TextField value={this.state.value} color="secondary" id="filled-basic" label="My Interests" variant="filled" onChange={this.handleChange} />
 
                     <br></br>
                     <br></br>
