@@ -45,7 +45,7 @@ app.use(function(err, req, res, next) {
     res.render("error");
 });
 
-router.get(
+app.get(
   "/api/github/callback",
   passport.authenticate("github", { failureRedirect: "/api" }),
   (req, res) => {
