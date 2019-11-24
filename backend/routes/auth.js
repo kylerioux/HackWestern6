@@ -8,10 +8,8 @@ router.get(
     (req, res) => {
         console.log("Login Successful!");
         res.redirect("/");
-    },(err) =>{
-      console.log(err)
     }
-);
+)
 
 router.get(
     "/github/login",
