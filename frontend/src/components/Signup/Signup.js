@@ -66,7 +66,6 @@ class Signup extends React.Component {
           <tr>
             <th  style={{ paddingLeft:"2%",textAlign:"left"}}>
             <p style={{display:"inline", textAlign:"left"}}>
-          portfol.io is a central hub for developers to gather and enhance their skills while building up a software portfolio. browse through suggested projects based on your current skills., join teams of other like-minded individuals and create meaningful projects to add to your resume.
           </p>
             </th>
             <th>

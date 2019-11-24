@@ -53,7 +53,7 @@ this.setState(() => ({
 
               <form className={this.root} noValidate autoComplete="off" onSubmit={e => { e.preventDefault(); }}>
                     
-                    <TextField value={this.state.value} color="secondary" id="filled-basic" label="My Interests" variant="filled" onChange={this.handleChange} />
+                    <TextField value={this.state.value} style={{backgroundColor: "#93a5ca", borderRadius: 5}} color="secondary" id="filled-basic" label="My Interests" variant="filled" onChange={this.handleChange} />
 
                     <br></br>
                     <br></br>

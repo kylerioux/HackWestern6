@@ -15,8 +15,8 @@ class Matcher extends React.Component {
     state = {
         showDashboard:false,
         id: 0,
-        title: "Fake Posting",
-        description: "This is a fake posting. Not a bad idea for a real posting, but horrible one for a fake one. (no clue what that means)"
+        title: "No posts found",
+        description: "Please try again later"
     }
     getMatch = async () => {
         const response = await axios.get("/api/postings/match");
