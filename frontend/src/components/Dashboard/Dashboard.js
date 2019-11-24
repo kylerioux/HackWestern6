@@ -68,7 +68,7 @@ const useStyles = makeStyles({
 
             <br></br>
             
-            <img style={{borderRadius:"50%"}} src={this.state.profilepicurl} alt="Smiley face" height="150" width="150"></img>
+            <img style={{borderRadius:"50%"}} src={this.state.profilepicurl} alt="No Github Profile Picture" height="150" width="150"></img>
 
               <br></br>
             
