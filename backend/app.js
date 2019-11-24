@@ -21,7 +21,7 @@ var app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
 
-router.use(
+app.use(
   cookieSession({
       maxAge: 30 * 24 * 60 * 60 * 1000,
       name: "session",
@@ -29,8 +29,8 @@ router.use(
   })
 );
 
-router.use(passport.initialize());
-router.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 
