@@ -25,11 +25,11 @@ postings.get('/', async (req, res) => {
     }
 });
 
-postings.post('/create/', async (req, res) => {
+postings.post('/create', async (req, res) => {
     if(isAuthenticated(req, res)) {
         var title = req.body.title;
         var description = req.body.description;
-        var author = mongoose.Types.ObjectId(req.body.author);
+        var author = mongoose.Types.ObjectId(req.user._id);
 
         User.findOne({ _id: req.body.author }).then(user => {
             if(user != null) {
@@ -49,7 +49,7 @@ postings.post('/create/', async (req, res) => {
     }
   });
 
-postings.post('/comment/', async (req, res) => {
+postings.post('/comment', async (req, res) => {
     if(isAuthenticated(req, res)) {
         Posting.findOne({ _id: req.body.id }).then(post => {
             if(post != null) {
@@ -72,7 +72,7 @@ postings.post('/comment/', async (req, res) => {
     }
 });
 
-postings.post('/skip/', async (req, res) => {
+postings.post('/skip', async (req, res) => {
     if(isAuthenticated(req, res)) {
         User.findOne({ _id: req.user._id }).then(user => {
             if(user != null) {

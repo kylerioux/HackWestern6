@@ -10,12 +10,12 @@ var cookieSession = require("cookie-session");
 //registering models
 var user = require("./model/User");
 var postings = require("./model/Posting");
-const auth = require("./authentication/GithubAuth");
 
 var indexRouter = require("./routes/index");
 
 var apiRouter = require("./routes/api");
 var app = express();
+
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -32,6 +32,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+const auth = require("./authentication/GithubAuth");
 
 
 app.use(logger("dev"));
