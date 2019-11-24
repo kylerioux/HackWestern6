@@ -10,7 +10,6 @@ var cookieSession = require("cookie-session");
 //registering models
 var user = require("./model/User");
 var postings = require("./model/Posting");
-const passport = require("passport");
 const auth = require("../authentication/GithubAuth");
 
 var indexRouter = require("./routes/index");
