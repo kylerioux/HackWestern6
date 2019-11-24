@@ -5,32 +5,8 @@ import './AccountCreationQ3.css';
 import Button from '@material-ui/core/Button';
 import 'typeface-roboto';
 import { Redirect } from 'react-router-dom'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-import Typography from '@material-ui/core/Typography';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import { makeStyles } from '@material-ui/core/styles';
-import FormControl from '@material-ui/core/FormControl';
-import Slider from '@material-ui/core/Slider';
 import TextField from '@material-ui/core/TextField';
 import Chip from '@material-ui/core/Chip';
-  
-//   function valuetext(value) {
-//     return `${value}°C`;
-//   }
-
-const useStyles = makeStyles(theme => ({
-    root: {
-      '& > *': {
-        margin: theme.spacing(1),
-        width: 200,
-      },
-    },
-  }));
   
  class AccountCreationQ3 extends React.Component {
 
