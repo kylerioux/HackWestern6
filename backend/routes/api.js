@@ -24,9 +24,7 @@ router.get("/", (req, res) => {
 
         });
     } else {
-        res.json({
-            status: "FAIL"
-        });
+        res.redirect("/auth/github/login");
     }
 });
 
