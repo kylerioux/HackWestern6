@@ -2,14 +2,6 @@ const express = require("express");
 const passport = require("passport");
 const router = express.Router();
 
-router.get(
-    "/github/callback",
-    passport.authenticate("github", { failureRedirect: "/api" }),
-    (req, res) => {
-        console.log("Login Successful!");
-        res.redirect("/");
-    }
-);
 
 router.get(
     "/github/login",

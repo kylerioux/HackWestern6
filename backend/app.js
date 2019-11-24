@@ -45,6 +45,15 @@ app.use(function(err, req, res, next) {
     res.render("error");
 });
 
+router.get(
+  "/api/github/callback",
+  passport.authenticate("github", { failureRedirect: "/api" }),
+  (req, res) => {
+      console.log("Login Successful!");
+      res.redirect("/");
+  }
+);
+
 mongoose
     .connect(
         "mongodb+srv://admin:admin@cluster0-clona.mongodb.net/test?retryWrites=true&w=majority",
