@@ -7,7 +7,7 @@ router.get(
     passport.authenticate("github", { failureRedirect: "/api" }),
     (req, res) => {
         console.log("Login Successful!");
-        res.redirect("http://127.0.0.1:4040");
+        res.redirect("/");
     },(err) =>{
       console.log(err)
     }
