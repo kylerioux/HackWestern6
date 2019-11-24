@@ -3,7 +3,6 @@ import axios from 'axios';
 import './Signup.css';
 import Button from '@material-ui/core/Button';
 import 'typeface-roboto';
-import renderHTML from 'react-render-html';
 
 
 import {
@@ -28,9 +27,6 @@ class Signup extends React.Component {
     handleLogin = async () => {
       
      var p = await axios.get("/api/auth/github/login",{ crossDomain: true });
-      //var j = await axios.get("/api/users");
-      console.log(p.data)
-      renderHTML(p.data);
 
       this.setState(() => ({
           showQuestions: p.statusText == "OK"
