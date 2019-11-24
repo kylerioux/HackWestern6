@@ -9,26 +9,28 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-function handleLogin(e) {
-
-
-}
 
 class Matcher extends React.Component {
     state = {
-        title: "Fake Posting",
-        description: "This is a fake posting. Not a bad idea for a real posting, but horrible one for a fake one. (no clue what that means)"
+        title: "",
+        description: "",
+        id: 0,
     }
     getMatch = async () => {
         const response = await axios.get("/api/postings/match");
-        console.log("response");
-        console.log(response);
-        // this.setState(() => ({
+        if(response.data.post != null)
+        {
+            this.setState(() => ({
+                title: response.data.post.title,
+                description: response.data.post.description,
+                id: response.data.post._id
+            }))
+        }
 
-        // }))
     }
-    handleRedirect = (e) => {
-        e.preventDefault();
+    handleNext = async () => {
+        await axios.post("/api/postings/skip", {id: this.state.id});
+        this.getMatch();
     }
 
      componentDidMount() {
@@ -53,7 +55,7 @@ class Matcher extends React.Component {
                     </Card>
                     <br />
                     <Button style={{ width: "46%", marginBottom: 0, marginLeft: "auto", backgroundColor: "cornflowerblue", color: "white", marginRight: 10 }} size="small">Message</Button>
-                    <Button style={{ width: "46%", marginBottom: 0, marginLeft: "auto", backgroundColor: "#f50057", color: "white" }} size="small">Next</Button>
+                    <Button style={{ width: "46%", marginBottom: 0, marginLeft: "auto", backgroundColor: "#f50057", color: "white" }} size="small" onClick={this.handleNext}>Next</Button>
                 </div>
             </div>);
     }
