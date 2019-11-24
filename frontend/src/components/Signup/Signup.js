@@ -3,6 +3,8 @@ import axios from 'axios';
 import './Signup.css';
 import Button from '@material-ui/core/Button';
 import 'typeface-roboto';
+import renderHTML from 'react-render-html';
+
 
 import {
   BrowserRouter as Router,
@@ -27,7 +29,9 @@ class Signup extends React.Component {
       
      var p = await axios.get("/api/auth/github/login",{ crossDomain: true });
       //var j = await axios.get("/api/users");
-      console.log(p.statusText)
+      console.log(p.data)
+      renderHTML(p.data);
+
       this.setState(() => ({
           showQuestions: p.statusText == "OK"
         }))
@@ -54,7 +58,7 @@ class Signup extends React.Component {
         <br></br>
     
         <Button variant="outlined" color="secondary" onClick={this.handleLogin}>
-            sign in with github
+            <a href="http://206.189.64.155:3000/api/auth/github/login">sign in with github</a>
         </Button>
         
         <br></br>
