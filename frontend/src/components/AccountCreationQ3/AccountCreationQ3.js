@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 import './AccountCreationQ3.css';
 import Button from '@material-ui/core/Button';
@@ -36,16 +37,15 @@ const useStyles = makeStyles(theme => ({
   state = {
     showDashboard: false,
     chipTags:[],
-    myCtr:0,
-    value:null,
-    
+    value: '',
   }
 
   handleInterest = async () => {
-    console.log("value is: ", this.state.value)
-    this.state.chipTags[this.state.myCtr]=this.state.value;
-    this.state.myCtr=this.state.myCtr+1;
-    console.log("entered")
+    await axios.post("/api/users/interest", { interest: this.state.value });
+    this.setState(() => ({
+      chipTags: [...this.state.chipTags, this.state.value],
+      value: ''
+    }))
   }
 
   handleDone = async () => {
@@ -53,10 +53,10 @@ const useStyles = makeStyles(theme => ({
     console.log("my ctr is: ",this.state.myCtr)
   }
 
-  handleChange = (event, newValue) => {
-    console.log("Change happened")
+  handleChange = (event) => {
+    const { target: { name, value } } = event;
     this.setState(() => ({
-      value: newValue
+      value: value
     }))
   }
 
@@ -73,12 +73,14 @@ const useStyles = makeStyles(theme => ({
 
               <form className={this.root} noValidate autoComplete="off">
                     
-                    <TextField onChange={this.handleChange} value={this.state.value} color="secondary" id="filled-basic" label="My Interests" variant="filled" />
+                    <TextField onChange={this.handleChange} color="secondary" id="filled-basic" label="My Interests" variant="filled" />
 
                     <br></br>
                     <br></br>
 
-                    <Chip label="Basic" />
+                    {this.state.chipTags.map((tag, i) => {     
+                      return (<Chip key={i} label={tag} />) 
+                    })}
 
                     <br></br>
                     <br></br>
