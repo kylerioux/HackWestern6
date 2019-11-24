@@ -67,7 +67,7 @@ class Matcher extends React.Component {
                     </Card>
                     <br />
                     <Button style={{ width: "46%", marginBottom: 0, marginLeft: "auto", backgroundColor: "cornflowerblue", color: "white", marginRight: 10 }} size="small">Message</Button>
-                    <Button style={{ width: "46%", marginBottom: 0, marginLeft: "auto", backgroundColor: "#f50057", color: "white" }} size="small">Next</Button>
+                    <Button style={{ width: "46%", marginBottom: 0, marginLeft: "auto", backgroundColor: "#f50057", color: "white" }} size="small" onClick={this.handleNext}>Next</Button>
                
                     <br></br>
                     <br></br>
