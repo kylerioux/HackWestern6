@@ -43,6 +43,11 @@ const useStyles = makeStyles(theme => ({
 
   handleInterest = async () => {
     console.log("value is: ", this.state.value)
+
+    var chip = document.createElement("BUTTON");
+    chip.innerHTML = String(this.myCtr);
+    document.body.appendChild(chip);
+
     this.state.chipTags[this.state.myCtr]=this.state.value;
     this.state.myCtr=this.state.myCtr+1;
     console.log("entered")
@@ -73,12 +78,12 @@ const useStyles = makeStyles(theme => ({
 
               <form className={this.root} noValidate autoComplete="off">
                     
-                    <TextField onChange={this.handleChange} value={this.state.value} color="secondary" id="filled-basic" label="My Interests" variant="filled" />
+                    <TextField value={this.state.value} color="secondary" id="filled-basic" label="My Interests" variant="filled" onChange={this.handleChange} />
 
                     <br></br>
                     <br></br>
 
-                    <Chip label="Basic" />
+                    <Chip label="TEST CHIP" />
 
                     <br></br>
                     <br></br>
