@@ -5,7 +5,6 @@ const Posting = mongoose.model("postings");
 const User = mongoose.model("users");
 
 function isAuthenticated(req, res) {
-  console.log(req);
     if(req.user == undefined) {
       res.send("Unauthenticated access");
       return false;
@@ -16,11 +15,12 @@ function isAuthenticated(req, res) {
 
 postings.get('/', async (req, res) => {
     if(isAuthenticated(req, res)) {
-        Posting.findOne({ _id: req.body.id }).then(post => {
-            if(post != null) {
-                res.send(post);
+        var author = mongoose.Types.ObjectId(req.user._id);
+        Posting.find({ author: author }).then(posts => {
+            if(posts != null) {
+                res.send(posts);
             } else {
-                res.send("posting not found");
+                res.send("posts not found");
             }
         });
     }
@@ -49,6 +49,7 @@ postings.post('/create', async (req, res) => {
         });
     }
   });
+  
 
 postings.post('/comment', async (req, res) => {
     if(isAuthenticated(req, res)) {
