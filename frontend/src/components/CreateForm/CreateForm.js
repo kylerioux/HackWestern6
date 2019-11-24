@@ -10,7 +10,8 @@ import Chip from '@material-ui/core/Chip';
 class CreateForm extends React.Component{
   state = {
     title: '',
-    description: ''
+    description: '',
+    goDash:false,
   }
 
   handleTitleChange = (event)=>{
@@ -30,14 +31,18 @@ class CreateForm extends React.Component{
     });
   }
 
-  goToPosts = async (e) => {
-    e.preventDefault();
-    var b = await axios.get("/api/postings/match" );
-    console.log(b)
+  goToDash = async (e) => {
+    this.setState(() => ({
+      goDash: true
+    }))
   }
 
 
   render() {
+
+    if (this.state.goDash === true) {
+      return <Redirect to='/dashboard' />
+  }
     
     return(
       <form className={this.root} noValidate autoComplete="off" onSubmit={e => { e.preventDefault(); }}> 
@@ -51,12 +56,12 @@ class CreateForm extends React.Component{
       <br/>
       <br/>
       <Button size='large' margin='3' variant="outlined" color="secondary"  onClick={this.handleDone}>
-                       Post!
+                       Post
                     </Button>
                     <br/>
       <br/>
-      <Button size='large' margin='3' variant="outlined" color="Primary"  onClick={this.goToPosts}>
-                       Go To Posts!
+      <Button size='large' margin='3' variant="outlined" color="Primary"  onClick={this.goToDash}>
+                       Back to dasboard
                     </Button>
       </form>
     ); 
