@@ -30,7 +30,7 @@ const useStyles = makeStyles({
  class AccountCreationQ2 extends React.Component {
 
   state = {
-    showQuestion2: false,
+    showQuestion3: false,
     value:null,
     valuetext:null,
   }
@@ -40,12 +40,12 @@ const useStyles = makeStyles({
 handleGroupSize = () => {
     console.log(this.state.value)
     this.setState(() => ({
-    showQuestion2: true
+    showQuestion3: true
     }))
 }
 
   render() {
-    if (this.state.showQuestions === true) {
+    if (this.state.showQuestion3 === true) {
       return <Redirect to='/accountcreationq2' />
   }
   

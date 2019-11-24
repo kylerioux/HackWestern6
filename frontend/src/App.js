@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import AccountCreationQ1 from './components/AccountCreationQ1/AccountCreationQ1.js';
 import Signup from './components/Signup/Signup.js';
 import AccountCreationQ2 from './components/AccountCreationQ2/AccountCreationQ2.js';
-
+import AccountCreationQ3 from './components/AccountCreationQ3/AccountCreationQ3.js';
 
 import { FormControl } from '@material-ui/core';
 
@@ -32,6 +32,9 @@ export default function App() {
             </Route>
             <Route path="/accountcreationq2" exact >
                 <AccountCreationQ2 />
+            </Route>
+            <Route path="/accountcreationq3" exact >
+                <AccountCreationQ3 />
             </Route>
           </Switch>
         </Router>

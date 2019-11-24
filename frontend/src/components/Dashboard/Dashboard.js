@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './AccountCreationQ3.css';
+import './Dashboard.css';
 import Button from '@material-ui/core/Button';
 import 'typeface-roboto';
 import { Redirect } from 'react-router-dom'
@@ -27,37 +27,37 @@ const useStyles = makeStyles({
 //   }
   
 
- class AccountCreationQ3 extends React.Component {
+ class Dashboard extends React.Component {
 
   state = {
     showNext: false,
     value:null,
     valuetext:null,
   }
-  handleChange = (event, newValue) => {
-    this.state.value=newValue;
-  }
-handleGroupSize = () => {
-    console.log(this.state.value)
-    this.setState(() => ({
-    showQuestion2: true
-    }))
-}
+//   handleChange = (event, newValue) => {
+//     this.state.value=newValue;
+//   }
+// handleGroupSize = () => {
+//     console.log(this.state.value)
+//     this.setState(() => ({
+//     showQuestion2: true
+//     }))
+// }
 
-  render() {
-    if (this.state.showQuestions === true) {
-      return <Redirect to='/accountcreationq2' />
-  }
+//   render() {
+//     if (this.state.showQuestions === true) {
+//       return <Redirect to='/accountcreationq2' />
+//   }
   
     return(
         <div >
           <header className="App-header">
-            <p>My interests include</p>
+            <p>MY DASHBOARD</p>
               <br></br>
 
           </header>
         </div>
         ); 
   }
-}
-export default AccountCreationQ3
+
+export default Dashboard;
