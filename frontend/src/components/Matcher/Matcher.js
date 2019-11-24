@@ -36,16 +36,6 @@ class Matcher extends React.Component {
       }
     render() {
         return (
-<<<<<<< HEAD
-      
-            <div className="Matcher">
-                <header className="App-header">
-                <p>MATCHER</p>
-
-                </header>
-
-
-=======
             <div className="Matcher" style={{ width: "100%" }}>
                 <div style={{ width: "35%", margin: "auto" }}>
                     <Card style={{ color: "white", backgroundColor: "#333b4a", height: 300, borderRadius: 10 }}>
@@ -65,7 +55,6 @@ class Matcher extends React.Component {
                     <Button style={{ width: "46%", marginBottom: 0, marginLeft: "auto", backgroundColor: "cornflowerblue", color: "white", marginRight: 10 }} size="small">Message</Button>
                     <Button style={{ width: "46%", marginBottom: 0, marginLeft: "auto", backgroundColor: "#f50057", color: "white" }} size="small">Next</Button>
                 </div>
->>>>>>> 7b9315c36dbafa9f6a4c56a3c1d826aaefbba10c
             </div>);
     }
 

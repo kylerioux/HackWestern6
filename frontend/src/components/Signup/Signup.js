@@ -48,8 +48,11 @@ class Signup extends React.Component {
     
         <img src={logo} className="App-logo" alt="logo" />
     
-        <Typography variant="h5" component="h5">
-            Welcome to Portfol.io
+    
+
+
+        <Typography style={{display:"inline-block"}} variant="h5" component="h5">
+            Welcome to <Typography style={{display:"inline-block"}}  variant="h5" component="h5"  color="secondary">Portfol.io</Typography>
         </Typography>
     
         <br></br>
@@ -67,7 +70,7 @@ class Signup extends React.Component {
           </p>
             </th>
             <th>
-            <img style={{display:"inline", borderRadius:"5%"}} src="https://media.istockphoto.com/photos/shes-bringing-some-of-her-bright-ideas-to-the-front-picture-id609072850?k=6&m=609072850&s=612x612&w=0&h=wzM_yz3vXBo2bDHUUdPJtppKdC0F2XE0ey2XLWF99ho=" />
+            {/* <img style={{display:"inline", borderRadius:"5%"}} src="https://media.istockphoto.com/photos/shes-bringing-some-of-her-bright-ideas-to-the-front-picture-id609072850?k=6&m=609072850&s=612x612&w=0&h=wzM_yz3vXBo2bDHUUdPJtppKdC0F2XE0ey2XLWF99ho=" /> */}
 
             </th>
           </tr>
