@@ -32,7 +32,7 @@ postings.post('/create', async (req, res) => {
         var description = req.body.description;
         var author = mongoose.Types.ObjectId(req.user._id);
 
-        User.findOne({ _id: req.body.author }).then(user => {
+        User.findOne({ _id: req.user._id }).then(user => {
             if(user != null) {
                 new Posting({ 
                     title: title,

@@ -29,11 +29,8 @@ import Chip from '@material-ui/core/Chip';
       
 this.setState(() => ({
     showDashboard: true,
-   
   }))
 }
-
-  
 
   handleChange = (event) => {
     event.preventDefault();

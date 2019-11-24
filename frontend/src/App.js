@@ -17,6 +17,7 @@ import AccountCreationQ2 from './components/AccountCreationQ2/AccountCreationQ2.
 import AccountCreationQ3 from './components/AccountCreationQ3/AccountCreationQ3.js';
 import CreateForm from './components/CreatePost/CreateForm.js';
 import Dashboard from './components/Dashboard/Dashboard.js';
+import Matcher from './components/Matcher/Matcher.js';
 import { FormControl } from '@material-ui/core';
 
 export default function App() {
@@ -42,6 +43,9 @@ export default function App() {
             </Route>
             <Route path="/dashboard" exact >
                 <Dashboard />
+            </Route>
+            <Route path="/matcher" exact >
+                <Matcher />
             </Route>
           </Switch>
         </Router>
