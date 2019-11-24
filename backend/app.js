@@ -47,7 +47,7 @@ app.get(
   passport.authenticate("github", { failureRedirect: "/api" }),
   (req, res) => {
       console.log("Login Successful!");
-      res.redirect("http://127.0.0.1:4040/accountcreationq1");
+      res.redirect("/accountcreationq1");
   }
 );
 app.use(cors());

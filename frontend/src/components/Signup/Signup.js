@@ -24,11 +24,12 @@ class Signup extends React.Component {
         showQuestions: false,
       }
     handleLogin = async () => {
-     var p = await axios.get("http://206.189.64.155:3000/api/auth/github/login");
+      
+     var p = await axios.get("/api/auth/github/login",{ crossDomain: true });
       //var j = await axios.get("/api/users");
-      console.log(p)
+      console.log(p.statusText)
       this.setState(() => ({
-          showQuestions: true
+          showQuestions: p.statusText == "OK"
         }))
     }
     handleRedirect = (e) => {
