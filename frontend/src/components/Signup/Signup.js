@@ -27,6 +27,8 @@ class Signup extends React.Component {
     handleLogin = async () => {
       
      var p = await axios.get("/api/auth/github/login",{ crossDomain: true });
+      //var j = await axios.get("/api/users");
+      console.log(p.data)
 
       this.setState(() => ({
           showQuestions: p.statusText == "OK"
@@ -53,8 +55,8 @@ class Signup extends React.Component {
     
         <br></br>
     
-        <Button variant="outlined" color="secondary" onClick={this.handleLogin}>
-            <a href="http://206.189.64.155:3000/api/auth/github/login">sign in with github</a>
+        <Button variant="outlined" color="secondary">
+            <a href="http://127.0.0.1:3001/api/auth/github/login">sign in with github</a>
         </Button>
         
         <br></br>
