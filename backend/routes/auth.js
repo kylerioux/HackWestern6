@@ -9,7 +9,7 @@ router.get(
         console.log("Login Successful!");
         res.redirect("/");
     }
-)
+);
 
 router.get(
     "/github/login",
