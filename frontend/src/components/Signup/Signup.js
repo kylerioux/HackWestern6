@@ -24,7 +24,7 @@ class Signup extends React.Component {
         showQuestions: false,
       }
     handleLogin = async () => {
-     var p = await axios.get("/api/auth/github/login");
+     var p = await axios.get("http://206.189.64.155:3000/api/auth/github/login");
       //var j = await axios.get("/api/users");
       console.log(p)
       this.setState(() => ({
