@@ -16,7 +16,7 @@ function isAuthenticated(req, res) {
 postings.get('/', async (req, res) => {
     if(isAuthenticated(req, res)) {
         var author = mongoose.Types.ObjectId(req.user._id);
-        Posting.find({ author: author }).then(posts => {
+        Posting.find({ $or: [{author: author},{"messages.author": author}] }).then(posts => {
             if(posts != null) {
                 res.send(posts);
             } else {
