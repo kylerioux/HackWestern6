@@ -59,7 +59,20 @@ class Signup extends React.Component {
         </Button>
         
         <br></br>
-    
+        <table>
+          <tr>
+            <th  style={{ paddingLeft:"2%",textAlign:"left"}}>
+            <p style={{display:"inline", textAlign:"left"}}>
+          portfol.io is a central hub for developers to gather and enhance their skills while building up a software portfolio. browse through suggested projects based on your current skills., join teams of other like-minded individuals and create meaningful projects to add to your resume.
+          </p>
+            </th>
+            <th>
+            <img style={{display:"inline", borderRadius:"5%"}} src="https://media.istockphoto.com/photos/shes-bringing-some-of-her-bright-ideas-to-the-front-picture-id609072850?k=6&m=609072850&s=612x612&w=0&h=wzM_yz3vXBo2bDHUUdPJtppKdC0F2XE0ey2XLWF99ho=" />
+
+            </th>
+          </tr>
+        </table>
+
         </header>
     
     
