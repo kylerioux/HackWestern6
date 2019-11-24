@@ -4,12 +4,13 @@ var cors = require('cors');
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-
+const passport = require("passport");
 var mongoose = require("mongoose");
-
+var cookieSession = require("cookie-session");
 //registering models
 var user = require("./model/User");
 var postings = require("./model/Posting");
+const auth = require("./authentication/GithubAuth");
 
 var indexRouter = require("./routes/index");
 
@@ -20,6 +21,19 @@ var app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
 
+app.use(
+  cookieSession({
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+      name: "session",
+      keys: ["ThisIsACookieKey2019"]
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -28,11 +42,20 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/api", apiRouter);
+app.get(
+  "/return/callback",
+  passport.authenticate("github", { failureRedirect: "/api" }),
+  (req, res) => {
+      console.log("Login Successful!");
+      res.redirect("/accountcreationq1");
+  }
+);
 app.use(cors());
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     next(createError(404));
 });
+
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -44,6 +67,8 @@ app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render("error");
 });
+
+
 
 mongoose
     .connect(

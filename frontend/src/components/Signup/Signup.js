@@ -14,16 +14,23 @@ import Typography from '@material-ui/core/Typography';
 import logo from '../../portfolio.png';
 import { Redirect } from 'react-router';
 
+function handleLogin(e) {
+ 
 
+  }
 
 class Signup extends React.Component {
     state = {
         showQuestions: false,
       }
-    handleLogin = () => {
-        this.setState(() => ({
-            showQuestions: true
-          }))
+    handleLogin = async () => {
+      
+     var p = await axios.get("/api/auth/github/login",{ crossDomain: true });
+      //var j = await axios.get("/api/users");
+      console.log(p.statusText)
+      this.setState(() => ({
+          showQuestions: p.statusText == "OK"
+        }))
     }
     handleRedirect = (e) => {
         e.preventDefault();
