@@ -60,7 +60,7 @@ passport.use(
                       user.skills = p;
                     }
                     user.save().then(()=>{
-                      return done(null,);
+                      return done(null,user);
                     })
                  
                 } else {
