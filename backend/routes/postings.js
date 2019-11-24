@@ -5,6 +5,7 @@ const Posting = mongoose.model("postings");
 const User = mongoose.model("users");
 
 function isAuthenticated(req, res) {
+  console.log(req);
     if(req.user == undefined) {
       res.send("Unauthenticated access");
       return false;
