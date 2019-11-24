@@ -6,10 +6,12 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const passport = require("passport");
 var mongoose = require("mongoose");
-
+var cookieSession = require("cookie-session");
 //registering models
 var user = require("./model/User");
 var postings = require("./model/Posting");
+const passport = require("passport");
+const auth = require("../authentication/GithubAuth");
 
 var indexRouter = require("./routes/index");
 
@@ -19,6 +21,19 @@ var app = express();
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
+
+router.use(
+  cookieSession({
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+      name: "session",
+      keys: ["ThisIsACookieKey2019"]
+  })
+);
+
+router.use(passport.initialize());
+router.use(passport.session());
+
+
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -41,6 +56,7 @@ app.use(cors());
 app.use(function(req, res, next) {
     next(createError(404));
 });
+
 
 // error handler
 app.use(function(err, req, res, next) {
