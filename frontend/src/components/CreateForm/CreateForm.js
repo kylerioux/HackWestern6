@@ -41,6 +41,8 @@ class CreateForm extends React.Component{
     
     return(
       <form className={this.root} noValidate autoComplete="off" onSubmit={e => { e.preventDefault(); }}> 
+
+      <p>Create your own post</p>
       
       <TextField value={this.state.title} color="secondary" id="filled-basic" label="Title" variant="filled" onChange={this.handleTitleChange} />
       <br/>

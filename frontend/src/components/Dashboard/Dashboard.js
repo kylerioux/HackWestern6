@@ -27,7 +27,8 @@ const useStyles = makeStyles({
  class Dashboard extends React.Component {
 
   state = {
-    showNext: false,
+    showCreate: false,
+    showPostings:false,
     value:null,
     valuetext:null,
     data:{},
@@ -38,13 +39,16 @@ const useStyles = makeStyles({
   }
 
   handleCreatePost = () => {
-    console.log('create')
+    this.setState(() => ({
+        showCreate: true,
+      }))
   }
 
   handleSearchPost = () => {
-    console.log('search')
+    this.setState(() => ({
+        showPostings: true,
+      }))
   }
-
 
   async componentDidMount() {
     const response = await axios.get("/api/users" );
@@ -56,9 +60,15 @@ const useStyles = makeStyles({
   }
 
   render() {
-    if (this.state.show === true) {
-      return <Redirect to='/accountcreationq2' />
+    if (this.state.showCreate === true) {
+      return <Redirect to='/createform' />
   }
+
+  if(this.state.showPostings === true){
+    return <Redirect to='/matcher' />
+  }
+  
+  
   this.state.index = this.state.profilename.lastIndexOf("/");
   this.state.username = this.state.profilename.substring(this.state.index, this.state.profilename.length); 
   

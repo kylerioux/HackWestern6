@@ -15,7 +15,7 @@ import AccountCreationQ1 from './components/AccountCreationQ1/AccountCreationQ1.
 import Signup from './components/Signup/Signup.js';
 import AccountCreationQ2 from './components/AccountCreationQ2/AccountCreationQ2.js';
 import AccountCreationQ3 from './components/AccountCreationQ3/AccountCreationQ3.js';
-import CreateForm from './components/CreatePost/CreateForm.js';
+import CreateForm from './components/CreateForm/CreateForm.js';
 import Dashboard from './components/Dashboard/Dashboard.js';
 import Matcher from './components/Matcher/Matcher.js';
 import { FormControl } from '@material-ui/core';
@@ -38,7 +38,7 @@ export default function App() {
             <Route path="/accountcreationq3" exact >
                 <AccountCreationQ3 />
             </Route>
-            <Route path="/create" exact >
+            <Route path="/createform" exact >
                 <CreateForm />
             </Route>
             <Route path="/dashboard" exact >
