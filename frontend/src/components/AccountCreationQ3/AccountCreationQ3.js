@@ -39,6 +39,13 @@ const useStyles = makeStyles(theme => ({
     showDashboard: false,
   }
 
+  handleInterest = async () => {
+    console.log("entered")
+  }
+
+  handleDone = async () => {
+    console.log("done")
+  }
 
 
   render() {
@@ -55,11 +62,19 @@ const useStyles = makeStyles(theme => ({
               <form className={this.root} noValidate autoComplete="off">
                     
                     <TextField color="secondary" id="filled-basic" label="My Interests" variant="filled" />
+
                     <br></br>
                     <br></br>
                    
-                    <Button size='large' margin='3' variant="outlined" color="secondary"  onClick={this.handleGroupSize}>
-                       Enter
+                    <Button size='large' margin='3' variant="outlined" color="secondary"  onClick={this.handleInterest}>
+                       Enter Interest
+                    </Button>
+
+                    <br></br>
+                    <br></br>
+
+                    <Button size='large' margin='3' variant="outlined" color="secondary"  onClick={this.handleDone}>
+                       Done
                     </Button>
 
                 </form>
