@@ -101,10 +101,17 @@ postings.get('/match', async (req, res) => {
                 posts.forEach(post => {
                     var postScore = 0; //starts from 0, goes up
                     // If the posting hasnt previously been seen by the user, or has been made by the user
-                    if(!user.postingsSkipped.some(e => e._id === post._id) 
-                        && !user.postingsInterested.some(e => e._id === post._id)
-                        && !post.author._id === user._id)
+                    console.log("postingsSkipped: " + !user.postingsSkipped.some(e =>{ 
+                        console.log(e._id.toString() + " : " + post._id.toString())
+                        return e._id.toString() == post._id.toString()}));
+                    console.log("postingsInterested: " + !user.postingsInterested.some(e => e._id == post._id));
+                    console.log("author id: " + post.author._id + " user id: " + user._id);
+                    console.log(post.author._id.toString() != user._id.toString());
+                    if(!user.postingsSkipped.some(e => e._id.toString() == post._id.toString()) 
+                        && !user.postingsInterested.some(e => e._id.toString() == post._id.toString())
+                        && post.author._id.toString() != user._id.toString())
                     {
+                        console.log("reached");
                         postScore += getCompatibilityScore(user, post.author);
                         //Track the final score of the post
                         postScores.push({
@@ -118,7 +125,7 @@ postings.get('/match', async (req, res) => {
                 if(response.length == 0){
                   res.send("no postings found");
                 } else {
-                  res.send(response.get(0))
+                  res.send(response[0])
                 }
             });
         });

@@ -10,27 +10,29 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Redirect } from 'react-router-dom'
 
-function handleLogin(e) {
-
-
-}
 
 class Matcher extends React.Component {
     state = {
         showDashboard:false,
+        id: 0,
         title: "Fake Posting",
         description: "This is a fake posting. Not a bad idea for a real posting, but horrible one for a fake one. (no clue what that means)"
     }
     getMatch = async () => {
         const response = await axios.get("/api/postings/match");
-        console.log("response");
-        console.log(response);
-        // this.setState(() => ({
+        if(response.data.post != null)
+        {
+            this.setState(() => ({
+                title: response.data.post.title,
+                description: response.data.post.description,
+                id: response.data.post._id
+            }))
+        }
 
-        // }))
     }
-    handleRedirect = (e) => {
-        e.preventDefault();
+    handleNext = async () => {
+        await axios.post("/api/postings/skip", {id: this.state.id});
+        this.getMatch();
     }
 
      componentDidMount() {
