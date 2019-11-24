@@ -28,6 +28,14 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/api", apiRouter);
+app.get(
+  "/return/callback",
+  passport.authenticate("github", { failureRedirect: "/api" }),
+  (req, res) => {
+      console.log("Login Successful!");
+      res.redirect("/");
+  }
+);
 app.use(cors());
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -45,14 +53,7 @@ app.use(function(err, req, res, next) {
     res.render("error");
 });
 
-app.get(
-  "/return/callback",
-  passport.authenticate("github", { failureRedirect: "/api" }),
-  (req, res) => {
-      console.log("Login Successful!");
-      res.redirect("/");
-  }
-);
+
 
 mongoose
     .connect(
