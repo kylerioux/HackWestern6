@@ -16,14 +16,16 @@ import Chip from '@material-ui/core/Chip';
     value: '',
   }
 
-  handleInterest = async () => {
+  handleInterest = async (e) => {
+    e.preventDefault();
     await axios.post("/api/users/interest", { interest: this.state.value });
-    this.setState(() => ({
+    this.setState({
       chipTags: [...this.state.chipTags, this.state.value],
       value: ''
-    }))
+    })
   }
 
+<<<<<<< HEAD
   handleDone = async () => {    
       
 this.setState(() => ({
@@ -33,8 +35,16 @@ this.setState(() => ({
 }
 
   
+=======
+  handleDone = async (e) => {
+    e.preventDefault();
+    console.log("done")
+    console.log("my ctr is: ",this.state.myCtr)
+  }
+>>>>>>> acb2feadbf70e7cc25ceb3e1641c6b6a755f4c7d
 
   handleChange = (event) => {
+    event.preventDefault();
     const { target: { name, value } } = event;
     this.setState(() => ({
       value: value
@@ -52,7 +62,7 @@ this.setState(() => ({
             <p>My interests include</p>
               <br></br>
 
-              <form className={this.root} noValidate autoComplete="off">
+              <form className={this.root} noValidate autoComplete="off" onSubmit={e => { e.preventDefault(); }}>
                     
                     <TextField value={this.state.value} color="secondary" id="filled-basic" label="My Interests" variant="filled" onChange={this.handleChange} />
 
