@@ -16,6 +16,7 @@ import Signup from './components/Signup/Signup.js';
 import AccountCreationQ2 from './components/AccountCreationQ2/AccountCreationQ2.js';
 import AccountCreationQ3 from './components/AccountCreationQ3/AccountCreationQ3.js';
 import CreateForm from './components/CreatePost/CreateForm.js';
+import Dashboard from './components/Dashboard/Dashboard.js';
 import { FormControl } from '@material-ui/core';
 
 export default function App() {
@@ -38,6 +39,9 @@ export default function App() {
             </Route>
             <Route path="/create" exact >
                 <CreateForm />
+            </Route>
+            <Route path="/dashboard" exact >
+                <Dashboard />
             </Route>
           </Switch>
         </Router>

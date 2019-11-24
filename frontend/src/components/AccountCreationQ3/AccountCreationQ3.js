@@ -25,11 +25,23 @@ import Chip from '@material-ui/core/Chip';
     })
   }
 
+<<<<<<< HEAD
+  handleDone = async () => {    
+      
+this.setState(() => ({
+    showDashboard: true,
+   
+  }))
+}
+
+  
+=======
   handleDone = async (e) => {
     e.preventDefault();
     console.log("done")
     console.log("my ctr is: ",this.state.myCtr)
   }
+>>>>>>> acb2feadbf70e7cc25ceb3e1641c6b6a755f4c7d
 
   handleChange = (event) => {
     event.preventDefault();
@@ -42,7 +54,7 @@ import Chip from '@material-ui/core/Chip';
   render() {
     if (this.state.showDashboard === true) {
       return <Redirect to='/dashboard' />
-  }
+    }
   
     return(
         <div >

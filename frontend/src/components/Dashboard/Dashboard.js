@@ -52,7 +52,7 @@ handleGroupSize = () => {
     return(
         <div >
           <header className="App-header">
-            <p>My interests include</p>
+            <p>MY DASHBOARD</p>
               <br></br>
 
           </header>
