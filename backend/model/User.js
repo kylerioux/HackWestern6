@@ -22,9 +22,9 @@ const userSchema = new Schema({
     }],
     preferredGroupSize: Number,
     preferredGroupSizeModifier: { type: Number, default: 100 },
-    postingsSkipped: [{ type: Schema.Types.ObjectId, ref: 'Posting' }],
+    postingsSkipped: [{ type: Schema.Types.ObjectId, ref: 'postings' }],
     postingsSkippedModifier: { type: Number, default: 100 },
-    postingsInterested: [{ type: Schema.Types.ObjectId, ref: 'Posting' }],
+    postingsInterested: [{ type: Schema.Types.ObjectId, ref: 'postings' }],
     postingsInterestedModifier: { type: Number, default: 100 },
 
 });

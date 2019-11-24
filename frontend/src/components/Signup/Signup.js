@@ -3,7 +3,7 @@ import axios from 'axios';
 import './Signup.css';
 import Button from '@material-ui/core/Button';
 import 'typeface-roboto';
-
+import { animateScroll as scroll } from "react-scroll";
 
 import {
   BrowserRouter as Router,
@@ -60,12 +60,6 @@ class Signup extends React.Component {
         </Button>
         
         <br></br>
-    
-       
-            <Button variant="outlined" color="secondary" onClick={this.handleRedirect} >
-                REDIRECT TO ACCOUNT CREATION FORM
-            </Button>
-      
     
         </header>
     

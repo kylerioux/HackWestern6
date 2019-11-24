@@ -1,8 +1,8 @@
 var express = require('express');
 var postings = express.Router();
 const mongoose = require("mongoose");
-const Posting = mongoose.model("postings");
 const User = mongoose.model("users");
+const Posting = mongoose.model("postings");
 
 function isAuthenticated(req, res) {
     if(req.user == undefined) {
@@ -103,7 +103,7 @@ postings.get('/match', async (req, res) => {
                     // If the posting hasnt previously been seen by the user, or has been made by the user
                     if(!user.postingsSkipped.some(e => e._id === post._id) 
                         && !user.postingsInterested.some(e => e._id === post._id)
-                        && !post.author.some(e => e._id === user._id))
+                        && !post.author._id === user._id)
                     {
                         postScore += getCompatibilityScore(user, post.author);
                         //Track the final score of the post
@@ -114,7 +114,12 @@ postings.get('/match', async (req, res) => {
                     }
                 });
                 // Sort posts from greatest to least and send in response
-                res.send(postScores.sort((a, b) => (a.postScore > b.postScore) ? 1 : -1).get(0));
+                var response = postScores.sort((a, b) => (a.postScore > b.postScore) ? 1 : -1);
+                if(response.length == 0){
+                  res.send("no postings found");
+                } else {
+                  res.send(response.get(0))
+                }
             });
         });
     }
