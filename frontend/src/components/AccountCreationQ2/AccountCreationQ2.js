@@ -46,7 +46,7 @@ handleGroupSize = () => {
 
   render() {
     if (this.state.showQuestion3 === true) {
-      return <Redirect to='/accountcreationq2' />
+      return <Redirect to='/accountcreationq3' />
   }
   
     return(
