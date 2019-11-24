@@ -15,6 +15,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import { makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import Slider from '@material-ui/core/Slider';
+import axios from 'axios';
   
 const useStyles = makeStyles({
     root: {
@@ -33,16 +34,26 @@ const useStyles = makeStyles({
     showNext: false,
     value:null,
     valuetext:null,
+    data:{},
+    profilepicurl:"",
   }
-  handleChange = (event, newValue) => {
-    this.state.value=newValue;
+
+  handleCreatePost = () => {
+    console.log('create')
   }
-handleGroupSize = () => {
-    console.log(this.state.value)
-    this.setState(() => ({
-    showQuestion2: true
-    }))
-}
+
+  handleSearchPost = () => {
+    console.log('search')
+  }
+
+  async componentDidMount() {
+    const response = await axios.get("/api/users" );
+    
+    this.setState({ data: response, profilepicurl: response.data[0].profilePictureUrl });
+    console.log(this.state.profilepicurl)
+    console.log(response)
+  }
+
 
   render() {
     if (this.state.showQuestions === true) {
@@ -52,8 +63,24 @@ handleGroupSize = () => {
     return(
         <div >
           <header className="App-header">
-            <p>MY DASHBOARD</p>
+
+            <p>DASHBOARD</p>
+
+            <br></br>
+            
+            <img style={{borderRadius:"50%"}} src={this.state.profilepicurl} alt="No Github Profile Picture" height="150" width="150"></img>
+
               <br></br>
+            
+            <Button margin='3' variant="outlined" color="secondary" onClick={() => this.handleCreatePost()}>
+              Create Posting
+            </Button>
+
+            <br></br>
+
+            <Button margin='3' variant="outlined" color="secondary" onClick={() => this.handleSearchPost()}>
+              Search Postings
+            </Button>
 
           </header>
         </div>

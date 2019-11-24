@@ -45,7 +45,7 @@ class AccountCreationQ1 extends React.Component {
           <div className="divider" />
           <Button margin='3' variant="outlined" color="secondary" onClick={() => this.handleLevel(2)}>
             Intermediate
-            </Button>
+          </Button>
           <div className="divider" />
           <Button margin='3' variant="outlined" color="secondary" onClick={() => this.handleLevel(3)}>
             Expert
