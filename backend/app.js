@@ -8,8 +8,9 @@ const passport = require("passport");
 var mongoose = require("mongoose");
 var cookieSession = require("cookie-session");
 //registering models
-var user = require("./model/User");
 var postings = require("./model/Posting");
+var user = require("./model/User");
+
 
 var indexRouter = require("./routes/index");
 

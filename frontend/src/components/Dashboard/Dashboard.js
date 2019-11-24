@@ -16,6 +16,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import Slider from '@material-ui/core/Slider';
 import axios from 'axios';
+import logo from '../../githubLogo.png';
   
 const useStyles = makeStyles({
     root: {
@@ -23,11 +24,6 @@ const useStyles = makeStyles({
     },
   });
   
-//   function valuetext(value) {
-//     return `${value}°C`;
-//   }
-  
-
  class Dashboard extends React.Component {
 
   state = {
@@ -36,6 +32,9 @@ const useStyles = makeStyles({
     valuetext:null,
     data:{},
     profilepicurl:"",
+    profilename:"",
+    username:"",
+    index:null,
   }
 
   handleCreatePost = () => {
@@ -46,19 +45,22 @@ const useStyles = makeStyles({
     console.log('search')
   }
 
+
   async componentDidMount() {
     const response = await axios.get("/api/users" );
+    this.setState({ data: response, profilepicurl:response.data[0].profilePictureUrl,
+    profilename:response.data[0].gitHubUrl,
     
-    this.setState({ data: response, profilepicurl: response.data[0].profilePictureUrl });
-    console.log(this.state.profilepicurl)
-    console.log(response)
+});
+     
   }
-
 
   render() {
-    if (this.state.showQuestions === true) {
+    if (this.state.show === true) {
       return <Redirect to='/accountcreationq2' />
   }
+  this.state.index = this.state.profilename.lastIndexOf("/");
+  this.state.username = this.state.profilename.substring(this.state.index, this.state.profilename.length); 
   
     return(
         <div >
@@ -67,7 +69,11 @@ const useStyles = makeStyles({
             <p>DASHBOARD</p>
 
             <br></br>
-            
+            <div class="imgContainer">
+             <img  src={logo} width="10%" height="10%" class="imgContainer"></img> 
+             <p>{this.state.username}</p>
+            </div>
+
             <img style={{borderRadius:"50%"}} src={this.state.profilepicurl} alt="No Github Profile Picture" height="150" width="150"></img>
 
               <br></br>

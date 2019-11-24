@@ -30,6 +30,12 @@ class CreateForm extends React.Component{
     });
   }
 
+  goToPosts = async (e) => {
+    e.preventDefault();
+    var b = await axios.get("/api/postings/match" );
+    console.log(b)
+  }
+
 
   render() {
     
@@ -44,6 +50,11 @@ class CreateForm extends React.Component{
       <br/>
       <Button size='large' margin='3' variant="outlined" color="secondary"  onClick={this.handleDone}>
                        Post!
+                    </Button>
+                    <br/>
+      <br/>
+      <Button size='large' margin='3' variant="outlined" color="Primary"  onClick={this.goToPosts}>
+                       Go To Posts!
                     </Button>
       </form>
     ); 
