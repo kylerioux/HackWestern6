@@ -34,30 +34,30 @@ const useStyles = makeStyles({
     value:null,
     valuetext:null,
   }
-//   handleChange = (event, newValue) => {
-//     this.state.value=newValue;
-//   }
-// handleGroupSize = () => {
-//     console.log(this.state.value)
-//     this.setState(() => ({
-//     showQuestion2: true
-//     }))
-// }
+  handleChange = (event, newValue) => {
+    this.state.value=newValue;
+  }
+handleGroupSize = () => {
+    console.log(this.state.value)
+    this.setState(() => ({
+    showQuestion2: true
+    }))
+}
 
-//   render() {
-//     if (this.state.showQuestions === true) {
-//       return <Redirect to='/accountcreationq2' />
-//   }
+  render() {
+    if (this.state.showQuestions === true) {
+      return <Redirect to='/accountcreationq2' />
+  }
   
     return(
         <div >
           <header className="App-header">
-            <p>MY DASHBOARD</p>
+            <p>My interests include</p>
               <br></br>
 
           </header>
         </div>
         ); 
   }
-
-export default Dashboard;
+}
+export default Dashboard

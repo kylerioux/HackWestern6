@@ -15,38 +15,35 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import { makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import Slider from '@material-ui/core/Slider';
+import TextField from '@material-ui/core/TextField';
   
-const useStyles = makeStyles({
-    root: {
-      width: 300,
-    },
-  });
+
   
 //   function valuetext(value) {
 //     return `${value}°C`;
 //   }
+
+const useStyles = makeStyles(theme => ({
+    root: {
+      '& > *': {
+        margin: theme.spacing(1),
+        width: 200,
+      },
+    },
+  }));
   
 
  class AccountCreationQ3 extends React.Component {
 
   state = {
-    showNext: false,
-    value:null,
-    valuetext:null,
+    showDashboard: false,
   }
-  handleChange = (event, newValue) => {
-    this.state.value=newValue;
-  }
-handleGroupSize = () => {
-    console.log(this.state.value)
-    this.setState(() => ({
-    showQuestion2: true
-    }))
-}
+
+
 
   render() {
-    if (this.state.showQuestions === true) {
-      return <Redirect to='/accountcreationq2' />
+    if (this.state.showDashboard === true) {
+      return <Redirect to='/dashboard' />
   }
   
     return(
@@ -54,6 +51,18 @@ handleGroupSize = () => {
           <header className="App-header">
             <p>My interests include</p>
               <br></br>
+
+              <form className={this.root} noValidate autoComplete="off">
+                    
+                    <TextField color="secondary" id="filled-basic" label="My Interests" variant="filled" />
+                    <br></br>
+                    <br></br>
+                   
+                    <Button size='large' margin='3' variant="outlined" color="secondary"  onClick={this.handleGroupSize}>
+                       Enter
+                    </Button>
+
+                </form>
 
           </header>
         </div>
