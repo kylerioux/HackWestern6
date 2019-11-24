@@ -47,7 +47,7 @@ app.get(
   "/return/callback",
   passport.authenticate("github", { failureRedirect: "/api" }),
   (req, res) => {
-    if (req.user != undefined){
+    if (req.user){
       console.log("Login Successful!");
       res.redirect("http://127.0.0.1:3000/accountcreationq1");
     }else{
