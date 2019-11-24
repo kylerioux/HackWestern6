@@ -72,7 +72,7 @@ postings.post('/comment/', async (req, res) => {
     }
 });
 
-postings.post('/decline/', async (req, res) => {
+postings.post('/skip/', async (req, res) => {
     if(isAuthenticated(req, res)) {
         User.findOne({ _id: req.user._id }).then(user => {
             if(user != null) {
@@ -88,8 +88,58 @@ postings.post('/decline/', async (req, res) => {
 
 postings.get('/match', async (req, res) => {
     if(isAuthenticated(req, res)) {
-        res.send("not implemented");
+        User.findOne({ _id: req.user._id })
+        .populate('postingsSkipped)')
+        .populate('postingsInterested')
+        .then(user => {
+            Posting.find()
+            .populate('author')
+            .then(posts => {
+                var postScores = [];
+                posts.forEach(post => {
+                    var postScore = 0; //starts from 0, goes up
+                    // If the posting hasnt previously been seen by the user, or has been made by the user
+                    if(!user.postingsSkipped.some(e => e._id === post._id) 
+                        && !user.postingsInterested.some(e => e._id === post._id)
+                        && !post.author.some(e => e._id === user._id))
+                    {
+                        postScore += getCompatibilityScore(user, post.author);
+                        //Track the final score of the post
+                        postScores.push({
+                            post,
+                            postScore
+                        })
+                    }
+                });
+                // Sort posts from greatest to least and send in response
+                res.send(postScores.sort((a, b) => (a.postScore > b.postScore) ? 1 : -1).get(0));
+            });
+        });
     }
 });
+
+function getCompatibilityScore(searcher, potentialMatch) {
+    var compatibilityScore = 0;
+
+    // Interests - how many similar interests?
+    compatibilityScore += searcher.interests.filter(function(i) {
+        return potentialMatch.interests.indexOf(i) >= 0;
+    }).length;
+    
+    // Skills - similar skills?
+    compatibilityScore += searcher.skills.filter(function(i) {
+        return potentialMatch.skills.indexOf(i) >= 0;
+    }).length;
+
+    // Group Size
+    compatibilityScore -= Math.abs(searcher.preferredGroupSize - potentialMatch.preferredGroupSize);
+
+    // Experience level - weighted similarity
+    if(searcher.experience == "BEGINNER") compatibilityScore += searcher.preferredGroupSizeModifier*(potentialMatch.experience == "BEGINNER" ? 20 : potentialMatch.experience = "INTERMEDIATE" ? 10 : 3);
+    else if(searcher.experience == "INTERMEDIATE") compatibilityScore += searcher.preferredGroupSizeModifier*(potentialMatch.experience == "INTERMEDIATE" ? 20 : 10);
+    else if(searcher.experience == "EXPERT") compatibilityScore += searcher.preferredGroupSizeModifier*(potentialMatch.experience == "EXPERT" ? 20 : potentialMatch.experience = "INTERMEDIATE" ? 10 : 3);
+
+    return compatibilityScore;
+}
 
 module.exports = postings;
