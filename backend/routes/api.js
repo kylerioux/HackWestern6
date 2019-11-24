@@ -27,7 +27,7 @@ router.use("/users", usersRouter);
 router.use("/postings", postingsRouter);
 
 router.get("/", (req, res) => {
-    if (req.user) {
+    if (req.user == undefined) {
         res.json({
             status: "OK",
             userAccount: req.user.gitHubUsername,
